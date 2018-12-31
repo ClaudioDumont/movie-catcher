@@ -67,7 +67,7 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: center;
       background: rgba(0,0,0, 0.4);
       width: 100%;
       height: 100%;
