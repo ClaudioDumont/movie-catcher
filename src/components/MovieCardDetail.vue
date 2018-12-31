@@ -76,19 +76,40 @@ export default {
 <style lang="scss">
 @import "../styles/base";
 .card-movie-details {
-  background: #fff;
-  border-radius: 10px;
+  max-width: 1000px;
+  position: fixed;
+  top: 220px;
+  left: calc(50% - 500px);
+  z-index: 5;
+  
+  &:after {
+    content: '';
+    background: rgba(0,0,0, 0.5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
+  }
   
   .card-movie-detail-content {
     display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    
+    
     
     @include breakpoint(phablet) {
       flex-direction: column;
     }
     
     .card-movie-poster {
-      border-radius: 10px 0 0 10px;
-      width: 50%;
+      width: 30%;
       
       @include breakpoint(phablet) {
         width: 100%;
@@ -99,10 +120,25 @@ export default {
 
     .movie-info {
       padding: 40px;
-      width: 50%;
+      width: 60%;
       @include breakpoint(phablet) {
         width: 100%;
         padding: 20px;
+      }
+
+      .close-modal {
+        font-weight: bold;
+        font-family: $font-alternative;
+        display: block;
+        cursor: pointer;
+        padding: 10px; 
+        background: #12A2F2;
+        color: #fff;
+        border-radius: 8px;
+        box-shadow: 1px 1px 6px rgba(0,0,0,.8);
+        position: absolute;
+        top: 20px;
+        right: 20px;
       }
     }
 

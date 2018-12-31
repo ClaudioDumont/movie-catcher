@@ -96,6 +96,7 @@ export default {
         color: #fff;
         border-radius: 8px;
         box-shadow: 1px 1px 10px rgba(0,0,0,1);
+        cursor: pointer;
       }
     }
     

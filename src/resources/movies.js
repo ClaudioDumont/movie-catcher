@@ -1,8 +1,8 @@
 import Vue from 'vue'
 
 export default (apikey) => ({
-	getByQuery: (query, type = 'movie', page = 1) => Vue.http
-		.get(`http://www.omdbapi.com/?apikey=${apikey}&s=${query}&type=${type}&page=${page}`)
+	getByQuery: (query, type = 'movie', page = 1, year = '2018') => Vue.http
+		.get(`http://www.omdbapi.com/?apikey=${apikey}&s=${query}&type=${type}&page=${page}&year=${year}`)
 		.then(response => response.json())
 		.then(response => response.Search || [])
 		.then(movies => movies.map(movie => ({

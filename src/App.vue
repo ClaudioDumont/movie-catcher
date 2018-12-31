@@ -1,9 +1,10 @@
 <template lang="pug">
 content
   header
-    h1(class="page-title" id="page-title") Movie CaTcher
-    .search-box
-      input(placeholder="Search movie by name" class="search-box-input" v-model="query") 
+    .main-container
+      h1(class="page-title" id="page-title") Movie CaTcher
+      .search-box
+        input(placeholder="Search movie by name" class="search-box-input" v-model="query") 
   .main-container
     .cards-movies-container
       movie-card(v-for="movie in movies" :id="movie.id" :title="movie.title" :gender="movie.gender" :url="movie.url" :description="movie.description" :poster="movie.poster" @view-details="onViewDetails")
@@ -45,7 +46,7 @@ export default {
   },
   mounted () {
     this.moviesClient
-      .getByQuery('2018')
+      .getByQuery('movie')
       .then(movies => {
         this.movies = movies
       })
@@ -79,9 +80,9 @@ body {
 }
 
 .main-container {
-  max-width: 1280px;
+  max-width: 1380px;
   padding: 20px;
-  margin: 150px auto 50px;
+  margin: 200px auto 50px;
   
   @include breakpoint(mobileonly) {
     margin-top: 230px;
@@ -98,6 +99,10 @@ header {
   left: 0;
   width: 100%;
   text-align: center;
+  
+  .main-container {
+    margin: 0 auto;
+  }
 }
 
 footer {
@@ -146,7 +151,7 @@ footer {
 }
 
 .cards-movies-container {
-  columns: 4;
+  columns: 5;
   grid-column-gap: 25px;
 
   @include breakpoint(tablet) {

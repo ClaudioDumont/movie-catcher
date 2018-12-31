@@ -7,7 +7,7 @@ body {
 }
 
 .main-container {
-	max-width: 1280px;
+	max-width: 1380px;
 	padding: 20px;
 	margin: 150px auto 50px;
 	
@@ -167,7 +167,7 @@ footer {
 }
 
 .cards-movies-container {
-	columns: 4;
+	columns: 5;
 	grid-column-gap: 25px;
 
 	@include breakpoint(tablet) {
