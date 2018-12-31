@@ -1,0 +1,49 @@
+
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+
+body {
+	font-family: 'Poiret One', cursive;
+}
+
+$font-default: 'Poiret One', cursive;
+$font-alternative: 'PT Sans', sans-serif;
+
+@mixin transition($transition) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+
+@mixin filter($filter-type,$filter-amount) { 
+  -webkit-filter: $filter-type+unquote('(#{$filter-amount})');
+  -moz-filter: $filter-type+unquote('(#{$filter-amount})');
+  -ms-filter: $filter-type+unquote('(#{$filter-amount})');
+  -o-filter: $filter-type+unquote('(#{$filter-amount})');
+  filter: $filter-type+unquote('(#{$filter-amount})');
+}
+
+
+@mixin breakpoint($point) {
+	@if $point == desktop {
+		@media (min-width: 1480px) { @content ; }
+	}
+
+	@else if $point == laptop {
+		@media (min-width: 1200px) { @content ; }
+	} 
+
+	@else if $point == tablet {
+		@media (max-width: 1024px) { @content ; }
+	}
+
+	@else if $point == phablet {
+		@media (max-width: 768px)  { @content ; }
+	}
+	
+	@else if $point == mobileonly {
+		@media (max-width: 413px)  { @content ; }
+
+	}
+}

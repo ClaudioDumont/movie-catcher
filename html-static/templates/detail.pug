@@ -1,0 +1,44 @@
+doctype html  
+html(lang='en')  
+	head
+		meta(charset="utf-8") 
+		meta(http-equiv="X-UA-Compatible", content="IE=edge") 
+		meta(name="viewport", content="width=device-width, initial-scale=1.0") 
+		meta(name="description", content="") 
+		meta(name="author", content="Claudio Dumont") 
+		title Movie CaTcher
+		link(href='assets/css/style.css', rel='stylesheet', type='text/css')
+	body
+		header
+			h1(class="page-title") Movie CaTcher
+			.search-box
+				input(placeholder="Search movie by name" class="search-box-input") 
+		.main-container
+			.card-movie-details 
+				.card-movie-detail-content
+					img(src="https://placeimg.com/640/480/any" class="card-movie-poster")
+					.movie-info
+						h2 Movie Title
+
+
+						p.description 
+							| When his parents are killed, billionaire playboy Bruce Wayne relocates to Asia where he is mentored by Henri Ducard and Ra's Al Ghul in how to fight evil. When learning about the plan to wipe out evil in Gotham City by Ducard, Bruce prevents this plan from getting any further and heads back to his home. Back in his original surroundings, Bruce adopts the image of a bat to strike fear into the criminals and the corrupt as the icon known as 'Batman'. But it doesn't stay quiet for long.
+						h3 Detail Info
+						.detail-info-container
+							ul.detail-info-label
+								li Year:
+								li Release date: 
+								li Duration:
+								li Genre:
+								li Director:
+								li Box office:
+							ul.detail-info-data
+								li 2018
+								li 15 Jun 2005
+								li 140 min
+								li Action, Adventure, Thriller
+								li Christopher Nolan
+								li $204,100,000
+		footer
+			| develop by: 
+			a(href="https://github.com/ClaudioDumont" target="_blank") ClaudioDumont
