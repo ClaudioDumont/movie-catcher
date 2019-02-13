@@ -3,12 +3,13 @@ content
   header
     .main-container
       h1(class="page-title" id="page-title") Movie CaTcher
-      .search-box
-        input(placeholder="Search movie by name" class="search-box-input" v-model="query") 
+      search-box(v-model="query")
   .main-container
     .cards-movies-container
       movie-card(v-for="movie in movies" :id="movie.id" :title="movie.title" :gender="movie.gender" :url="movie.url" :description="movie.description" :poster="movie.poster" @view-details="onViewDetails")
     movie-card-detail(v-if="selectedMovie" :id="selectedMovie.id" :title="selectedMovie.title" :gender="selectedMovie.gender" :url="selectedMovie.url" :description="selectedMovie.description" :poster="selectedMovie.poster" :released="selectedMovie.released" :year="selectedMovie.year" :boxOffice="selectedMovie.boxOffice" :duration="selectedMovie.duration" :director="selectedMovie.director"  @close-modal="onClose")
+
+    pagination(:offset="page" @page-changed="onPageChange")
   footer
     | develop by: 
     a(href="https://github.com/ClaudioDumont" target="_blank") ClaudioDumont
@@ -18,30 +19,25 @@ content
 
 import MovieCard from './components/MovieCard.vue';
 import MovieCardDetail from './components/MovieCardDetail.vue';
+import Pagination from './components/Pagination.vue';
+import SearchBox from './components/SearchBox.vue';
 import Movies from './resources/movies';
 
 export default {
   name: 'app',
   components: {
     MovieCard,
-    MovieCardDetail
+    MovieCardDetail,
+    SearchBox,
+    Pagination
   },
   data () {
     return {
       movies: [],
       selectedMovie: null,
       query: '',
+      page: 0,
       moviesClient: Movies('1c8df10')
-    }
-  },
-  watch: {
-    query (newQuery) {
-      this.moviesClient
-        .getByQuery(newQuery)
-        .then(movies => {
-          this.movies = movies
-          this.selectedMovie = null
-        })
     }
   },
   mounted () {
@@ -50,6 +46,15 @@ export default {
       .then(movies => {
         this.movies = movies
       })
+  },
+  watch: {
+    query (newQuery) {
+      this.page = 0;
+      this.getMovies(newQuery, this.page)
+    },
+    page (newPage) {
+      this.getMovies(this.query, newPage)
+    }
   },
   methods: {
     onViewDetails(id) {
@@ -61,6 +66,17 @@ export default {
     },
     onClose(id) {
       this.selectedMovie = null
+    },
+    getMovies(query, page) {
+      this.moviesClient
+        .getByQuery(query, page)
+        .then(movies => {
+          this.movies = movies
+          this.selectedMovie = null
+      })
+    },
+    onPageChange(page) {
+      this.page = page
     }
   }
 }
@@ -132,22 +148,6 @@ footer {
   background: rgba(0,0,0,0.6);
   display: inline-block;
   border-radius: 10px;
-}
-
-
-.search-box {
-  input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    text-align: center;
-    background: rgba(255, 255, 255, .9);
-    border: none;
-    border-radius: 10px;
-    color: #000;
-    font-family: $font-default;
-  }
 }
 
 .cards-movies-container {
